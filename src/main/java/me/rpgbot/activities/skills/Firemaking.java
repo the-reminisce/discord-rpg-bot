@@ -45,7 +45,7 @@ public class Firemaking extends Task {
 
     @Override
     public void completeTask(Player player, MessageChannel channel) {
-        sendMentionMessage(channel, player, "with the final stroke of your rock you successfully started a small bonfire.\n+%d exp", 50);
+        sendMentionMessage(channel, player, "with the final stroke of your rock you successfully started a small bonfire.\n+%s exp", "50");
     }
 
 }

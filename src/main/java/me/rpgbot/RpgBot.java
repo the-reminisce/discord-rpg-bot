@@ -35,7 +35,7 @@ import java.util.stream.Collectors;
 public class RpgBot extends ListenerAdapter {
 
     private final String BOT_DIRECTORY = System.getProperty("user.home") + File.separator + "rpgbot" + File.separator;
-    private final String BOT_TOKEN = "NzIzMzg0NzQ0NjI4MzIyMzI2.Xuw2rQ.42zoEioO3vskx1yaZfRlJ4R8o_E";
+    private final String BOT_TOKEN = "NzIzNzM3NzEyMTgzNDc2MzM0.Xu1_Yw._eHPPsRMjpwPzGn_S3DBXpYat14";
 
     private HashMap<Long, Player> players;
     private final GsonBuilder gsonBuilder;
@@ -124,26 +124,23 @@ public class RpgBot extends ListenerAdapter {
             return;
         }
         final String msg = e.getMessage().getContentDisplay();
+        if (!msg.startsWith("!rpg ")) {
+            return;
+        }
+
         final Player player = grabPlayer(e.getAuthor().getIdLong());
         if (player.getDiscordUser() == null) {
             player.setDiscordUser(e.getAuthor());
         }
-
         player.setPlayerName(e.getAuthor().getName());
         player.setLastMessage(msg);
-        savePlayer(player);
         log("%s - %s", e.getAuthor().getName(), msg);
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("US/Eastern"));
-        Date currentDate = calendar.getTime();
 
-        System.out.println(currentDate.getHours());
-        if (!msg.startsWith("!rpg ")) {
-            return;
-        }
         String[] args = msg.split(" ");
         if (args.length > 1) {
-            taskManager.processPlayerTask(player, args[1], e.getMessage().getChannel());
+            taskManager.processPlayerTask(player, args[1], args, e.getMessage().getChannel());
         }
+        savePlayer(player);
     }
 
     public static void sendMessage(final MessageChannel channel, final Player player, final String message, final Object... objects) {

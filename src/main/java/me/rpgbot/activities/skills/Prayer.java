@@ -38,7 +38,7 @@ public class Prayer extends Task {
 
     @Override
     public void startTask(Player player, MessageChannel channel) {
-        sendMentionMessage(channel, player, "you stop what you're doing at take out your compass and prayer rug from your backpack....\n" +
+        sendMentionMessage(channel, player, "you stop what you're doing and take out your compass and prayer rug from your backpack....\n" +
                 "You find the direction of the kaaba and lay your prayer rug flat on the ground in that direction...\n" +
                 "You begin to pray %s salaat to please allah and to keep the shiatana's away. (%s till completion)", getPrayer(), "2 minutes");
     }

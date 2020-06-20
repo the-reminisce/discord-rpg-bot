@@ -45,6 +45,6 @@ public class Fishing extends Task {
     @Override
     public void completeTask(Player player, final MessageChannel channel) {
         player.getInventory().addItem(new Item("Raw Shrimp", 1, true));
-        sendMentionMessage(channel, player, "you reel in your rod and find that you've caught some %s!\n+%d exp", "raw shrimps", 50);
+        sendMentionMessage(channel, player, "you reel in your rod and find that you've caught some %s!\n+%s exp", "raw shrimps", "50");
     }
 }

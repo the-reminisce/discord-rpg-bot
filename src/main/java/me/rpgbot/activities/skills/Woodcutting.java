@@ -1,6 +1,7 @@
 package me.rpgbot.activities.skills;
 
 import me.rpgbot.activities.Task;
+import me.rpgbot.attributes.Attribute;
 import me.rpgbot.containers.Item;
 import me.rpgbot.store.Player;
 import net.dv8tion.jda.core.entities.MessageChannel;
@@ -44,8 +45,9 @@ public class Woodcutting extends Task {
 
     @Override
     public void completeTask(Player player, final MessageChannel channel) {
-        player.getInventory().addItem(new Item("Logs", 5));
-        sendMentionMessage(channel, player, "you hear the tree crack.... you run to avoid it from falling on top of you...\n+%d exp", "50");
+        player.getInventory().addItem(new Item("Logs"));
+        player.getAttributes().increaseLevel(Attribute.STRENGTH, 1);
+        sendMentionMessage(channel, player, "you hear the tree crack.... you run to avoid it from falling on top of you...\n+%s exp", "50");
     }
 
 }

@@ -1,5 +1,6 @@
 package me.rpgbot.store;
 
+import me.rpgbot.attributes.PlayerAttributes;
 import me.rpgbot.containers.ItemContainer;
 import net.dv8tion.jda.core.entities.User;
 
@@ -16,8 +17,10 @@ public class Player {
     private final long playerId;
 
     private String lastMessage;
-    private HashSet<Integer> completedQuests = new HashSet<>();
+    private HashSet<Integer> completedQuests;
     private ItemContainer inventory;
+    private PlayerAttributes attributes;
+    private PlayerPoints points;
 
     private transient User discordUser;
     private transient String playerName;
@@ -74,4 +77,17 @@ public class Player {
         return inventory;
     }
 
+    public PlayerAttributes getAttributes() {
+        if (attributes == null) {
+            attributes = new PlayerAttributes(this);
+        }
+        return attributes;
+    }
+
+    public PlayerPoints getPoints() {
+        if (points == null) {
+            points = new PlayerPoints(this);
+        }
+        return points;
+    }
 }

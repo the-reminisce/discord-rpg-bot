@@ -2,6 +2,10 @@ package me.rpgbot.activities;
 
 import me.rpgbot.RpgBot;
 import me.rpgbot.activities.actions.InventoryCheck;
+import me.rpgbot.activities.commands.CommandAttribute;
+import me.rpgbot.activities.commands.CommandGamble;
+import me.rpgbot.activities.commands.CommandGold;
+import me.rpgbot.activities.commands.CommandHelp;
 import me.rpgbot.activities.skills.Firemaking;
 import me.rpgbot.activities.skills.Fishing;
 import me.rpgbot.activities.skills.Prayer;
@@ -28,7 +32,10 @@ public class TaskManager {
         this.taskSet = new HashSet<>();
         this.playerTasks = new HashMap<>();
 
-        taskSet.addAll(Arrays.asList(new InventoryCheck(), new Fishing(), new Woodcutting(), new Prayer(), new Firemaking()));
+        //skills and actions
+        taskSet.addAll(Arrays.asList(new Fishing(), new Woodcutting(), new Prayer(), new Firemaking()));
+        //commands
+        taskSet.addAll(Arrays.asList(new CommandHelp(), new CommandGamble(), new InventoryCheck(), new CommandAttribute(), new CommandGold()));
         taskLoop();
     }
 
@@ -69,7 +76,7 @@ public class TaskManager {
         return null;
     }
 
-    public void processPlayerTask(final Player player, final String taskCommand, final MessageChannel channel) {
+    public void processPlayerTask(final Player player, final String taskCommand, final String[] args, final MessageChannel channel) {
         if (player == null || channel == null) {
             return;
         }
